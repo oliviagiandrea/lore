@@ -5,7 +5,7 @@
   <main>
     <section>
       <header>
-        <h2>New to Fritter?</h2>
+        <h2>New to Lore?</h2>
       </header>
       <RegisterForm />
     </section>
@@ -18,7 +18,7 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
 import RegisterForm from '@/components/Login/RegisterForm.vue';
 import LoginForm from '@/components/Login/LoginForm.vue';
 

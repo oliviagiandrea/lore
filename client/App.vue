@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import NavBar from '@/components/common/NavBar.vue';
 
 export default {

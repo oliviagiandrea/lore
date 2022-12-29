@@ -1,6 +1,6 @@
 <!-- Form for changing password (block style) -->
 
-<script>
+<script lang="ts">
 import BlockForm from '@/components/common/BlockForm.vue';
 
 export default {

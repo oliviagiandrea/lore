@@ -1,4 +1,4 @@
-<!-- Default page that also displays freets -->
+<!-- Default page that also displays lore -->
 
 <template>
   <main>
@@ -6,18 +6,18 @@
       <header>
         <h2>Welcome @{{ $store.state.username }}</h2>
       </header>
-      <CreateFreetForm />
+      <CreateLoreForm />
     </section>
     <section v-else>
       <header>
-        <h2>Welcome to Fritter!</h2>
+        <h2>Welcome to Hobgoblin Lore!</h2>
       </header>
       <article>
         <h3>
           <router-link to="/login">
             Sign in
           </router-link>
-          to create, edit, and delete freets.
+          to create, edit, and delete lore.
         </h3>
       </article>
     </section>
@@ -25,49 +25,49 @@
       <header>
         <div class="left">
           <h2>
-            Viewing all freets
+            Viewing all lore
             <span v-if="$store.state.filter">
-              by @{{ $store.state.filter }}
+              containing '{{ $store.state.filter }}'
             </span>
           </h2>
         </div>
         <div class="right">
-          <GetFreetsForm
-            ref="getFreetsForm"
-            value="author"
-            placeholder="🔍 Filter by author (optional)"
-            button="🔄 Get freets"
+          <GetLoreForm
+            ref="getLoreForm"
+            value="title"
+            placeholder="🔍 Search by title"
+            button="🔄 Get lore"
           />
         </div>
       </header>
       <section
-        v-if="$store.state.freets.length"
+        v-if="$store.state.lore.length"
       >
-        <FreetComponent
-          v-for="freet in $store.state.freets"
-          :key="freet.id"
-          :freet="freet"
+        <LoreComponent
+          v-for="lore in $store.state.lore"
+          :key="lore.id"
+          :lore="lore"
         />
       </section>
       <article
         v-else
       >
-        <h3>No freets found.</h3>
+        <h3>No lore found.</h3>
       </article>
     </section>
   </main>
 </template>
 
 <script>
-import FreetComponent from '@/components/Freet/FreetComponent.vue';
-import CreateFreetForm from '@/components/Freet/CreateFreetForm.vue';
-import GetFreetsForm from '@/components/Freet/GetFreetsForm.vue';
+import LoreComponent from '@/components/Lore/LoreComponent.vue';
+import CreateLoreForm from '@/components/Lore/CreateLoreForm.vue';
+import GetLoreForm from '@/components/Lore/GetLoreForm.vue';
 
 export default {
-  name: 'FreetPage',
-  components: {FreetComponent, GetFreetsForm, CreateFreetForm},
+  name: 'LorePage',
+  components: {LoreComponent, GetLoreForm, CreateLoreForm},
   mounted() {
-    this.$refs.getFreetsForm.submit();
+    this.$refs.getLoreForm.submit();
   }
 };
 </script>

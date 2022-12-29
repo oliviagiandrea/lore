@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import * as userValidator from '../server/user/middleware';
 import {userRouter} from '../server/user/router';
-import {freetRouter} from '../server/freet/router';
+import {loreRouter} from '../server/lore/router';
 import MongoStore from 'connect-mongo';
 
 // Load environmental variables
@@ -35,7 +35,7 @@ mongoose.connection.on('error', err => {
   console.error(err);
 });
 
-// Initalize an express app
+// Initialize an express app
 const app = express();
 
 // Set the port
@@ -69,7 +69,7 @@ app.use(userValidator.isCurrentSessionUserExists);
 
 // Add routers from routes folder
 app.use('/api/users', userRouter);
-app.use('/api/freets', freetRouter);
+app.use('/api/lore', loreRouter);
 
 // Catch all the other routes and display error message
 app.all('*', (req: Request, res: Response) => {

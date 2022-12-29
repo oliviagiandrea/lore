@@ -1,6 +1,6 @@
 <!-- Form for registering an account (block style) -->
 
-<script>
+<script lang="ts">
 import BlockForm from '@/components/common/BlockForm.vue';
 
 export default {

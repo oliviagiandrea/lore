@@ -1,6 +1,6 @@
 <!-- Form for signing in (block style) -->
 
-<script>
+<script lang="ts">
 import BlockForm from '@/components/common/BlockForm.vue';
 
 export default {

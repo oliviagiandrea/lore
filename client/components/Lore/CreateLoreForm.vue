@@ -1,23 +1,24 @@
-<!-- Form for creating freets (block style) -->
+<!-- Form for creating lore (block style) -->
 
-<script>
+<script lang="ts">
 import BlockForm from '@/components/common/BlockForm.vue';
 
 export default {
-  name: 'CreateFreetForm',
+  name: 'CreateLoreForm',
   mixins: [BlockForm],
   data() {
     return {
-      url: '/api/freets',
+      url: '/api/lore',
       method: 'POST',
       hasBody: true,
       fields: [
+        {id: 'title', label: 'Title', value: ''},
         {id: 'content', label: 'Content', value: ''}
       ],
-      title: 'Create a freet',
-      refreshFreets: true,
+      title: 'Create lore',
+      refreshLore: true,
       callback: () => {
-        const message = 'Successfully created a freet!';
+        const message = 'Successfully created lore!';
         this.$set(this.alerts, message, 'success');
         setTimeout(() => this.$delete(this.alerts, message), 3000);
       }
