@@ -31,7 +31,7 @@
       <article v-for="(status, alert, index) in alerts" :key="index" :class="status">
         <p>{{ alert }}</p>
       </article>
-      >
+    </section>
   </article>
 </template>
 
