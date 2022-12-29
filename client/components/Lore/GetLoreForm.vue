@@ -7,7 +7,7 @@ export default {
   name: 'GetLoreForm',
   mixins: [InlineForm],
   data() {
-    return {value: this.$store.state.filter};
+    return { value: this.$store.state.filter };
   },
   methods: {
     async submit() {

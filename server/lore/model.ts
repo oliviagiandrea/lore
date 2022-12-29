@@ -1,10 +1,10 @@
-import type {Types} from 'mongoose';
-import {Schema, model} from 'mongoose';
-import type {User} from '../user/model';
+import type { Types } from "mongoose";
+import { Schema, model } from "mongoose";
+import type { User } from "../user/model";
 
 /**
  * This file defines the properties stored in lore
-*/
+ */
 
 // Type definition for Lore on the backend
 export type Lore = {
@@ -34,29 +34,29 @@ const LoreSchema = new Schema<Lore>({
     // Use Types.ObjectId outside of the schema
     type: Schema.Types.ObjectId,
     required: true,
-    ref: 'User'
+    ref: "User",
   },
   // The date the lore was created
   dateCreated: {
     type: Date,
-    required: true
+    required: true,
   },
   // The title of the lore
   title: {
     type: String,
-    required: true
+    required: true,
   },
   // The content of the lore
   content: {
     type: String,
-    required: true
+    required: true,
   },
   // The date the lore was modified
   dateModified: {
     type: Date,
-    required: true
-  }
+    required: true,
+  },
 });
 
-const LoreModel = model<Lore>('Lore', LoreSchema);
+const LoreModel = model<Lore>("Lore", LoreSchema);
 export default LoreModel;

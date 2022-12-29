@@ -32,26 +32,13 @@
           </h2>
         </div>
         <div class="right">
-          <GetLoreForm
-            ref="getLoreForm"
-            value="title"
-            placeholder="🔍 Search by title"
-            button="🔄 Get lore"
-          />
+          <GetLoreForm ref="getLoreForm" value="title" placeholder="🔍 Search by title" button="🔄 Get lore" />
         </div>
       </header>
-      <section
-        v-if="$store.state.lore.length"
-      >
-        <LoreComponent
-          v-for="lore in $store.state.lore"
-          :key="lore.id"
-          :lore="lore"
-        />
+      <section v-if="$store.state.lore.length">
+        <LoreComponent v-for="lore in $store.state.lore" :key="lore.id" :lore="lore" />
       </section>
-      <article
-        v-else
-      >
+      <article v-else>
         <h3>No lore found.</h3>
       </article>
     </section>
@@ -65,7 +52,7 @@ import GetLoreForm from '@/components/Lore/GetLoreForm.vue';
 
 export default {
   name: 'LorePage',
-  components: {LoreComponent, GetLoreForm, CreateLoreForm},
+  components: { LoreComponent, GetLoreForm, CreateLoreForm },
   mounted() {
     this.$refs.getLoreForm.submit();
   }
@@ -78,14 +65,31 @@ section {
   flex-direction: column;
 }
 
-header, header > * {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header,
+header>* {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 400px) {
+
+  header,
+  header>* {
+    flex-direction: column;
+  }
+
+  .right {
+    margin-bottom: 1rem;
+  }
+
+  main {
+    padding: 0 2rem;
+  }
 }
 
 button {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 section .scrollbox {

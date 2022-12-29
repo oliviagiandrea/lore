@@ -1,6 +1,6 @@
-import type {HydratedDocument} from 'mongoose';
-import moment from 'moment';
-import type {Lore, PopulatedLore} from './model';
+import type { HydratedDocument } from "mongoose";
+import moment from "moment";
+import type { Lore, PopulatedLore } from "./model";
 
 // Update this if you add a property to the Lore type!
 type LoreResponse = {
@@ -17,7 +17,8 @@ type LoreResponse = {
  * @param {Date} date - A date object
  * @returns {string} - formatted date as string
  */
-const formatDate = (date: Date): string => moment(date).format('MMMM Do YYYY, h:mm:ss a');
+const formatDate = (date: Date): string =>
+  moment(date).format("MMMM Do YYYY, h:mm:ss a");
 
 /**
  * Transform a raw Lore object from the database into an object
@@ -29,20 +30,18 @@ const formatDate = (date: Date): string => moment(date).format('MMMM Do YYYY, h:
 const constructLoreResponse = (lore: HydratedDocument<Lore>): LoreResponse => {
   const loreCopy: PopulatedLore = {
     ...lore.toObject({
-      versionKey: false // Cosmetics; prevents returning of __v property
-    })
+      versionKey: false, // Cosmetics; prevents returning of __v property
+    }),
   };
-  const {username} = loreCopy.authorId;
+  const { username } = loreCopy.authorId;
   delete loreCopy.authorId;
   return {
     ...loreCopy,
     _id: loreCopy._id.toString(),
     author: username,
     dateCreated: formatDate(lore.dateCreated),
-    dateModified: formatDate(lore.dateModified)
+    dateModified: formatDate(lore.dateModified),
   };
 };
 
-export {
-  constructLoreResponse
-};
+export { constructLoreResponse };

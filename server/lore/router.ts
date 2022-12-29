@@ -1,9 +1,9 @@
-import type {NextFunction, Request, Response} from 'express';
-import express from 'express';
-import LoreCollection from './collection';
-import * as userValidator from '../user/middleware';
-import * as loreValidator from './middleware';
-import * as util from './util';
+import type { NextFunction, Request, Response } from "express";
+import express from "express";
+import LoreCollection from "./collection";
+import * as userValidator from "../user/middleware";
+import * as loreValidator from "./middleware";
+import * as util from "./util";
 
 const router = express.Router();
 
@@ -59,7 +59,7 @@ const router = express.Router();
  *
  */
 router.get(
-  '/',
+  "/",
   async (req: Request, res: Response, next: NextFunction) => {
     // Check if title query parameter was supplied
     if (req.query.title !== undefined) {
@@ -72,7 +72,9 @@ router.get(
     res.status(200).json(response);
   },
   async (req: Request, res: Response) => {
-    const titleLore = await LoreCollection.findAllByTitle(req.query.title as string);
+    const titleLore = await LoreCollection.findAllByTitle(
+      req.query.title as string
+    );
     const response = titleLore.map(util.constructLoreResponse);
     res.status(200).json(response);
   }
@@ -90,19 +92,23 @@ router.get(
  * @throws {400} - If the lore title/content is empty or a stream of empty spaces
  */
 router.post(
-  '/',
+  "/",
   [
     userValidator.isUserLoggedIn,
     loreValidator.isValidLoreTitle,
-    loreValidator.isValidLoreContent
+    loreValidator.isValidLoreContent,
   ],
   async (req: Request, res: Response) => {
-    const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
-    const lore = await LoreCollection.addOne(userId, req.body.title, req.body.content);
+    const userId = (req.session.userId as string) ?? ""; // Will not be an empty string since its validated in isUserLoggedIn
+    const lore = await LoreCollection.addOne(
+      userId,
+      req.body.title,
+      req.body.content
+    );
 
     res.status(201).json({
-      message: 'Lore was created successfully.',
-      lore: util.constructLoreResponse(lore)
+      message: "Lore was created successfully.",
+      lore: util.constructLoreResponse(lore),
     });
   }
 );
@@ -117,15 +123,12 @@ router.post(
  * @throws {404} - If the loreId is not valid
  */
 router.delete(
-  '/:loreId?',
-  [
-    userValidator.isUserLoggedIn,
-    loreValidator.isLoreExists
-  ],
+  "/:loreId?",
+  [userValidator.isUserLoggedIn, loreValidator.isLoreExists],
   async (req: Request, res: Response) => {
     await LoreCollection.deleteOne(req.params.loreId);
     res.status(200).json({
-      message: 'Lore was deleted successfully.'
+      message: "Lore was deleted successfully.",
     });
   }
 );
@@ -143,19 +146,22 @@ router.delete(
  * @throws {400} - If the lore title/content is empty or a stream of empty spaces
  */
 router.patch(
-  '/:loreId?',
+  "/:loreId?",
   [
     userValidator.isUserLoggedIn,
     loreValidator.isLoreExists,
-    loreValidator.isValidLoreContent
+    loreValidator.isValidLoreContent,
   ],
   async (req: Request, res: Response) => {
-    const lore = await LoreCollection.updateOne(req.params.loreId, req.body.content);
+    const lore = await LoreCollection.updateOne(
+      req.params.loreId,
+      req.body.content
+    );
     res.status(200).json({
-      message: 'Lore was updated successfully.',
-      lore: util.constructLoreResponse(lore)
+      message: "Lore was updated successfully.",
+      lore: util.constructLoreResponse(lore),
     });
   }
 );
 
-export {router as loreRouter};
+export { router as loreRouter };

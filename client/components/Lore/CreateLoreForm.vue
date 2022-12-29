@@ -12,8 +12,8 @@ export default {
       method: 'POST',
       hasBody: true,
       fields: [
-        {id: 'title', label: 'Title', value: ''},
-        {id: 'content', label: 'Content', value: ''}
+        { id: 'title', label: 'Title', value: '' },
+        { id: 'content', label: 'Content', value: '' }
       ],
       title: 'Create lore',
       refreshLore: true,

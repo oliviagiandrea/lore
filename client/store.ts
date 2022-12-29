@@ -1,6 +1,6 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import createPersistedState from 'vuex-persistedstate';
+import Vue from "vue";
+import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
@@ -12,7 +12,7 @@ const store = new Vuex.Store({
     filter: null, // title string to filter shown lore by (null = show all)
     lore: [], // All lore created in the app
     username: null, // Username of the logged in user
-    alerts: {} // global success/error messages encountered during submissions to non-visible forms
+    alerts: {}, // global success/error messages encountered during submissions to non-visible forms
   },
   mutations: {
     alert(state, payload) {
@@ -49,13 +49,15 @@ const store = new Vuex.Store({
       /**
        * Request the server for the currently available lore.
        */
-      const url = state.filter ? `/api/users/${state.filter}/lore` : '/api/lore';
-      const res = await fetch(url).then(async r => r.json());
+      const url = state.filter
+        ? `/api/users/${state.filter}/lore`
+        : "/api/lore";
+      const res = await fetch(url).then(async (r) => r.json());
       state.lore = res;
-    }
+    },
   },
   // Store data across page refreshes, only discard on browser close
-  plugins: [createPersistedState()]
+  plugins: [createPersistedState()],
 });
 
 export default store;
