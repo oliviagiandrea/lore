@@ -43,7 +43,7 @@ body {
 }
 
 main {
-  padding: 0 5em 5em;
+  padding: 0rem 5em 5rem 5em;
 }
 
 .alerts {

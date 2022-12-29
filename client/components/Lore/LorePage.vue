@@ -84,7 +84,7 @@ header>* {
   }
 
   main {
-    padding: 0 2rem;
+    padding: 0rem 2rem 2rem 2rem;
   }
 }
 
